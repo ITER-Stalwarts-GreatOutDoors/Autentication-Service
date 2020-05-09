@@ -1,66 +1,136 @@
 package com.cg.iter.authenticationservice.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+//, cascade=CascadeType.ALL
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "USER_TBL")
+@Table(name = "user_tbl")
 public class User {
 
 	@Id
 	private int id;
-	private String userName;
+	
+	@NotBlank
+	private String username;
+	
+	@NotBlank
 	private String password;
+	
+	@Email
+	@NotBlank
 	private String email;
 	
-	public User() {
-			
-		}
+	@NotBlank
+	private String phoneno;
 	
+	@ElementCollection
+	@CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+	@Column(name = "roles")
+	private Set<String> roles = new HashSet<>();
+
+	public User() {}
+
+	public User(int id, @NotBlank String username, @NotBlank String password, @Email @NotBlank String email,
+			@NotBlank String phoneno) {
+
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phoneno = phoneno;
+	}
+	
+
+	public User(int id, @NotBlank String username, @NotBlank String password, @Email @NotBlank String email,
+			@NotBlank String phoneno, Set<String> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phoneno = phoneno;
+		this.roles = roles;
+	}
+
+	
+
+	public User(@NotBlank String username, @NotBlank String password, @Email @NotBlank String email,
+			@NotBlank String phoneno, Set<String> roles) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phoneno = phoneno;
+		this.roles = roles;
+	}
+	
+
+	public User(@NotBlank String username, @NotBlank String password, @Email @NotBlank String email,
+			@NotBlank String phoneno) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phoneno = phoneno;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public User(String userName, String password, String email) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.email = email;
+
+	public String getPhoneno() {
+		return phoneno;
 	}
-	public User(int id, String userName, String password, String email) {
-		super();
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-		this.email = email;
+
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
 	}
+
+	public Set<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<String> roles) {
+		this.roles = roles;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

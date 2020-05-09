@@ -1,7 +1,9 @@
 package com.cg.iter.authenticationservice.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
-
+import org.springframework.util.StringUtils;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,45 +17,60 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.cg.iter.authenticationservice.service.CustomUserDetailsService;
+import com.cg.iter.authenticationservice.service.UserDetailsServiceImpl;
 import com.cg.iter.authenticationservice.util.JwtUtil;
+
+
+/*
+ * Name: JwtFilter
+ * Description: Its will validate the authentication token from the request headed
+ * and its will filter the authentication.
+ */
 @Component
 public class JwtFilter extends OncePerRequestFilter{
 
+	
+	
 	@Autowired
-	private JwtUtil jwtUtil;
+	private JwtUtil jwtUtils;
 	@Autowired
-	private CustomUserDetailsService service;
+	private UserDetailsServiceImpl userDetailsService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+
+	
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		
-		String authorizationHeader = request.getHeader("Authorization");
-		String token = null;
-        String userName = null;
+		try {
+			String jwt = parseJwt(request);
+			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            token = authorizationHeader.substring(7);
-            userName = jwtUtil.extractUsername(token);
-        }
-        
-        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+						userDetails, null, userDetails.getAuthorities());
+				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-            UserDetails userDetails = service.loadUserByUsername(userName);
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
+		} catch (Exception e) {
+			logger.error("Cannot set user authentication: {}", e);
+		}
 
-            //validate the token in util package 
-            if (jwtUtil.validateToken(token, userDetails)) {
+		filterChain.doFilter(request, response);
+	}
+	
 
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            }
-        }
-     filterChain.doFilter(request, response);
-		
+	private String parseJwt(HttpServletRequest request) {
+		String headerAuth = request.getHeader("Authorization");
+
+		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+			return headerAuth.substring(7, headerAuth.length());
+		}
+
+		return null;
 	}
 	
 
