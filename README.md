@@ -19,10 +19,10 @@ spring.jpa.properties.dialect=org.hibernate.dialect.OracleDialect
 
 
 ## Current Actors
-*USER
+* USER
 
-*ADMIN
+* ADMIN
 
-*PRODUCT_MASTER
+* PRODUCT_MASTER
 
 You can change actors at /src/main/java/com/cg/iter/entity/ERole according to your project.
