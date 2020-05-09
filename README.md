@@ -17,3 +17,12 @@ spring.jpa.hibernate.ddl-auto=update
 
 spring.jpa.properties.dialect=org.hibernate.dialect.OracleDialect
 
+
+## Current Actors
+*USER
+
+*ADMIN
+
+*PRODUCT_MASTER
+
+You can change actors at /src/main/java/com/cg/iter/entity/ERole according to your project.
