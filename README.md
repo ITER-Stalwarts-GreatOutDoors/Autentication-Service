@@ -1,5 +1,6 @@
 # GreatOutDoor-authentication service
-
+A spring JWT authentication service for Great OutDoors.
+[](asserts/jwt.jpg)
 server.port=9000
 
 spring.application.name=authentication_service
