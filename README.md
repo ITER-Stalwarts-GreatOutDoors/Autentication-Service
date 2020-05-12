@@ -5,6 +5,9 @@ server.port=9000
 
 spring.application.name=authentication_service
 
+## Description 
+![](asserts/jwt-flow.jpg)
+
 ## Data source
 spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl  
 
