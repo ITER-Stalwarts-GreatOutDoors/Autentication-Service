@@ -17,7 +17,7 @@ import com.cg.iter.authenticationservice.entity.request.LoginRequest;
 import com.cg.iter.authenticationservice.entity.request.SignupRequest;
 import com.cg.iter.authenticationservice.service.UserService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/app/auth")
 public class AuthController {

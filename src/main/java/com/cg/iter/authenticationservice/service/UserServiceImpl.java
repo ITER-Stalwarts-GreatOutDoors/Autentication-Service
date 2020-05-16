@@ -102,6 +102,10 @@ public class UserServiceImpl implements UserService{
 				case "master":
 					roles.add(ERole.ROLE_PRODUCT_MASTER.toString());
 					break;
+				
+				case "retailer":
+					roles.add(ERole.ROLE_RETAILER.toString());
+					break;
 					
 				default:
 					roles.add(ERole.ROLE_USER.toString());

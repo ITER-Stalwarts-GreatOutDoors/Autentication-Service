@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/app/route")
 public class RouteController {
@@ -17,7 +17,7 @@ public class RouteController {
 	}
 	
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('PRODUCT_MASTER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public String userAccess() {
 		return "User Content.";
 	}
@@ -32,5 +32,12 @@ public class RouteController {
 	@PreAuthorize("hasRole('ADMIN')")
 	public String adminAccess() {
 		return "Admin Board.";
+	}
+	
+	
+	@GetMapping("/retailer")
+	@PreAuthorize("hasRole('RETAILER')")
+	public String retailerAccess() {
+		return "Retailer Board.";
 	}
 }
