@@ -17,27 +17,27 @@ public class RouteController {
 	}
 	
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN') or hasRole('PRODUCT_MASTER')")
 	public String userAccess() {
-		return "User Content.";
+		return "user";
 	}
 
 	@GetMapping("/master")
 	@PreAuthorize("hasRole('PRODUCT_MASTER')")
 	public String moderatorAccess() {
-		return "Product Master Board.";
+		return "master.";
 	}
 
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String adminAccess() {
-		return "Admin Board.";
+		return "admin";
 	}
 	
 	
 	@GetMapping("/retailer")
 	@PreAuthorize("hasRole('RETAILER')")
 	public String retailerAccess() {
-		return "Retailer Board.";
+		return "retailer";
 	}
 }

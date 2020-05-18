@@ -20,7 +20,7 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("/editUser")
-	@PreAuthorize("hasRole('USER') or hasRole('PRODUCT_MASTER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER') or hasRole('PRODUCT_MASTER') or hasRole('ADMIN') or hasRole('RETAILER')")
 	String editUser(@RequestBody User user) {
 		if(userService.editUser(user)) {
 			return "User updated successfully";
@@ -28,15 +28,17 @@ public class UserController {
 		return "fail to edit user!!";
 	}
 	
+//	@PostMapping("/deleteUser")
+//	@PreAuthorize("hasRole('USER') or hasRole('PRODUCT_MASTER') or hasRole('ADMIN') or hasRole('RETAILER')")
+//	String deleteProductMaster(@RequestBody User user) {
+//		if(userService.deleteUser(user)) {
+//			return "User deleted successfully";
+//		}
+//		return "fail to delete user!!";
+//	}
+//	
 	
 	
-	@PostMapping("/deleteUser")
-	@PreAuthorize("hasRole('ADMIN')")
-	String deleteUser(@RequestBody User user) {
-		if(userService.deleteUser(user)) {
-			return "User deleted successfully";
-		}
-		return "fail to delete user!!";
-	}
+	
 
 }

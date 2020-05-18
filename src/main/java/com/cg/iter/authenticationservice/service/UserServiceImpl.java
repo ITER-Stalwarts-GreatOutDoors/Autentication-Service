@@ -41,8 +41,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ResponseEntity<?> authenticateUser(@Valid LoginRequest loginRequest) {
+		User user = userRepository.findByEmail(loginRequest.getEmail()).get();
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(user.getUsername(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateToken(authentication);
