@@ -29,8 +29,8 @@ public class MasterController {
 	
 	@DeleteMapping("/deleteProduct")
 	@PreAuthorize("hasRole('PRODUCT_MASTER')")
-	String deleteProduct(@RequestParam String ProductId) {
-		return productMasterService.deleteProduct(ProductId);
+	String deleteProduct(@RequestParam String productId) {
+		return productMasterService.deleteProduct(productId);
 	}
 	
 

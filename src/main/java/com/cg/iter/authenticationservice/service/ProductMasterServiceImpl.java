@@ -14,7 +14,7 @@ public class ProductMasterServiceImpl implements ProductMasterService{
 	@Autowired
 	RestTemplate restTemplate;
 	
-	private String productURL = "http://localhost:9500/product";
+	private String productURL = "http://product-ms/product";
 	
 	@Override
 	public String addProduct(ProductDTO product) {
