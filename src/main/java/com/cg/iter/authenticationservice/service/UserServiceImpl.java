@@ -22,7 +22,9 @@ import com.cg.iter.authenticationservice.entity.request.LoginRequest;
 import com.cg.iter.authenticationservice.entity.request.SignupRequest;
 import com.cg.iter.authenticationservice.entity.response.JwtResponse;
 import com.cg.iter.authenticationservice.repository.UserRepository;
+import com.cg.iter.authenticationservice.util.GenerateUserId;
 import com.cg.iter.authenticationservice.util.JwtUtil;
+import com.cg.iter.authenticationservice.util.Validator;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -37,10 +39,16 @@ public class UserServiceImpl implements UserService{
 	PasswordEncoder encoder;
 	
 	@Autowired
+	GenerateUserId generate;
+	
+	@Autowired
 	JwtUtil jwtUtils;
 	
+	@Autowired
+	Validator validator;
+	
 	@Override
-	public ResponseEntity<?> authenticateUser(@Valid LoginRequest loginRequest) {
+	public ResponseEntity<JwtResponse> authenticateUser(@Valid LoginRequest loginRequest) {
 		User user = userRepository.findByEmail(loginRequest.getEmail()).get();
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(user.getUsername(), loginRequest.getPassword()));
@@ -57,6 +65,7 @@ public class UserServiceImpl implements UserService{
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
 												 userDetails.getEmail(), 
+												 userDetails.getPhoneno(),
 												 roles));
 	}
 
@@ -66,6 +75,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ResponseEntity<?> registerUser(@Valid SignupRequest signUpRequest) {
+		
+		validator.checkPassword(signUpRequest.getPassword());
+		validator.checkPhoneNumber(signUpRequest.getPhoneno());
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
@@ -114,11 +126,17 @@ public class UserServiceImpl implements UserService{
 			});
 		}
 
-		user.setId((int) userRepository.count());
+		
 		user.setRoles(roles);
+		user.setId(generate.generateUserId(signUpRequest.getPhoneno()));
 		userRepository.save(user);
+		
+		//authenticate the same user to login
+		LoginRequest login = new LoginRequest();
+		login.setEmail(signUpRequest.getEmail());
+		login.setPassword(signUpRequest.getPassword());
 
-		return ResponseEntity.ok("User registered successfully!");
+		return authenticateUser(login);
 	}
 
 
@@ -141,6 +159,27 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public boolean deleteUser(User user) {
 		userRepository.delete(user);
+		return true;
+	}
+
+
+
+
+
+	@Override
+	public long getDbCount() {
+		return userRepository.count();
+	}
+
+
+
+
+
+	@Override
+	public boolean addUser(User user) {
+		user.setId(generate.generateUserId(user.getPhoneno()));
+		user.setPassword(encoder.encode(user.getPassword()));
+		userRepository.save(user);
 		return true;
 	}
 

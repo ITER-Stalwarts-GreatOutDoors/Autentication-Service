@@ -13,26 +13,28 @@ import com.cg.iter.authenticationservice.entity.ERole;
 import com.cg.iter.authenticationservice.entity.User;
 import com.cg.iter.authenticationservice.repository.UserRepository;
 
+
 @Service
 public class AdminRetailerServiceImpl implements AdminRetailerService{
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	UserService userService;
 	
 	@Override
-	public boolean deleteRetailer(User user) {
-		userRepository.delete(user);
+	public boolean deleteRetailer(int userId) {
+		userRepository.deleteById(userId);
 		return true;
 	}
 
 	@Override
-	public boolean addProductMaster(User user) {
+	public boolean addRetailer(User user) {
 		Set<String> roles = new HashSet<>();
 		roles.add(ERole.ROLE_USER.toString());
 		roles.add(ERole.ROLE_RETAILER.toString());
-		user.setId((int)userRepository.count());
 		user.setRoles(roles);
-		userRepository.save(user);
+		userService.addUser(user);
 		return true;
 	}
 
