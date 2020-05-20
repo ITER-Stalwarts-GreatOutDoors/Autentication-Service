@@ -36,7 +36,7 @@ public class JwtFilter extends OncePerRequestFilter{
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+	private static final Logger jwtFilterLogger = LoggerFactory.getLogger(JwtFilter.class);
 
 	
 	
@@ -56,7 +56,7 @@ public class JwtFilter extends OncePerRequestFilter{
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		} catch (Exception e) {
-			logger.error("Cannot set user authentication: {}", e);
+			jwtFilterLogger.error("Cannot set user authentication: {}", e);
 		}
 
 		filterChain.doFilter(request, response);
@@ -65,7 +65,7 @@ public class JwtFilter extends OncePerRequestFilter{
 
 	private String parseJwt(HttpServletRequest request) {
 		String headerAuth = request.getHeader("Authorization");
-
+		jwtFilterLogger.info("filer the request and response entity with header");
 		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
 			return headerAuth.substring(7, headerAuth.length());
 		}

@@ -25,7 +25,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 	}
 	
 	@ExceptionHandler(ValidationException.class)
-	public final ResponseEntity<ErrorMessage> orderNotFound(ValidationException ex){
+	public final ResponseEntity<ErrorMessage> validationException(ValidationException ex){
 
 		ErrorMessage exceptionResponse =
 				new ErrorMessage(ex.getMessage(), 

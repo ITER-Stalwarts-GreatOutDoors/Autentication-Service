@@ -29,7 +29,7 @@ public class UserController {
 			)
 	@PostMapping("/editUser")
 	@PreAuthorize("hasRole('USER') or hasRole('PRODUCT_MASTER') or hasRole('ADMIN') or hasRole('RETAILER')")
-	String editUser(@RequestBody User user) {
+	public String editUser(@RequestBody User user) {
 		if(userService.editUser(user)) {
 			return "User updated successfully";
 		}

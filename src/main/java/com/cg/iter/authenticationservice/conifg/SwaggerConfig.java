@@ -12,6 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
+	private final String basePackage = "com.cg.iter.authenticationservice";
 	@Bean
 	public Docket swaggerConfigurationAuth() {
 		
@@ -19,7 +20,7 @@ public class SwaggerConfig {
 				.groupName("Authentication")
 				.select()
 				.paths(PathSelectors.ant("/app/auth/*"))
-				.apis(RequestHandlerSelectors.basePackage("com.cg.iter.authenticationservice"))
+				.apis(RequestHandlerSelectors.basePackage(basePackage))
 				.build()
 				.apiInfo(apiDetails());
 	}
@@ -31,7 +32,7 @@ public class SwaggerConfig {
 				.groupName("Admin")
 				.select()
 				.paths(PathSelectors.ant("/app/admin/*"))
-				.apis(RequestHandlerSelectors.basePackage("com.cg.iter.authenticationservice"))
+				.apis(RequestHandlerSelectors.basePackage(basePackage))
 				.build()
 				.apiInfo(apiDetails());
 	}
@@ -43,7 +44,7 @@ public class SwaggerConfig {
 				.groupName("Product Master")
 				.select()
 				.paths(PathSelectors.ant("/app/master/*"))
-				.apis(RequestHandlerSelectors.basePackage("com.cg.iter.authenticationservice"))
+				.apis(RequestHandlerSelectors.basePackage(basePackage))
 				.build()
 				.apiInfo(apiDetails());
 	}
@@ -55,7 +56,7 @@ public class SwaggerConfig {
 				.groupName("User")
 				.select()
 				.paths(PathSelectors.ant("/app/user/*"))
-				.apis(RequestHandlerSelectors.basePackage("com.cg.iter.authenticationservice"))
+				.apis(RequestHandlerSelectors.basePackage(basePackage))
 				.build()
 				.apiInfo(apiDetails());
 	}

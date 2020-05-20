@@ -14,10 +14,11 @@ public class GenerateUserId {
 
 	@Autowired
 	UserService service;
+	private static Random rand = new Random();
+	
 	
 	public int generateUserId(String phoneno) {
 		int userId = 7;
-		Random rand = new Random();
 		int selected = rand.nextInt(1000);
 		userId*=selected;
 		userId+=Integer.parseInt(phoneno.substring(5, 7));

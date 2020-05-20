@@ -42,7 +42,7 @@ public class AdminController {
 			)
 	@DeleteMapping("/deleteProductMaster")
 	@PreAuthorize("hasRole('ADMIN')")
-	String deleteProductMaster(@RequestParam int userId) {
+	public String deleteProductMaster(@RequestParam int userId) {
 		if(productMasterService.deleteProductMaster(userId)) {
 			return "Product master deleted successfully";
 		}
@@ -57,7 +57,7 @@ public class AdminController {
 			)
 	@PostMapping("/addProductMaster")
 	@PreAuthorize("hasRole('ADMIN')")
-	String addProductMaster(@RequestBody User productMaster) {
+	public String addProductMaster(@RequestBody User productMaster) {
 		
 		if(productMaster==null || productMaster.getUsername()==null)throw new NullParameterException("Please provide details of product master!");
 		
@@ -75,7 +75,7 @@ public class AdminController {
 			)
 	@PostMapping("/addRetailer")
 	@PreAuthorize("hasRole('ADMIN')")
-	String addRetailer(@RequestBody User retailer) {
+	public String addRetailer(@RequestBody User retailer) {
 		if(retailerService.addRetailer(retailer)) {
 			return "Retailer added successfully";
 		}

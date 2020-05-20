@@ -30,7 +30,7 @@ public class MasterController {
 			)
 	@PostMapping("/addProduct")
 	@PreAuthorize("hasRole('PRODUCT_MASTER')")
-	String addProduct(@RequestBody ProductDTO product) {
+	public String addProduct(@RequestBody ProductDTO product) {
 		return productMasterService.addProduct(product);
 	}
 	
@@ -41,7 +41,7 @@ public class MasterController {
 			)
 	@DeleteMapping("/deleteProduct")
 	@PreAuthorize("hasRole('PRODUCT_MASTER')")
-	String deleteProduct(@RequestParam String productId) {
+	public String deleteProduct(@RequestParam String productId) {
 		return productMasterService.deleteProduct(productId);
 	}
 	
