@@ -1,15 +1,15 @@
 A spring JWT authentication restful service API for Great OutDoors.	
-![](asserts/jwt.jpg)	
+![](assets/jwt.jpg)	
 server.port=9000	
 
 
 spring.application.name=authentication_service	
 
 ## Description 	
-![](asserts/jwt-flow.png)	
+![](assets/jwt-flow.png)	
 
 ## Sequence flow
-![](asserts/JWT-Authorization.png)
+![](assets/JWT-Authorization.png)
 
 ## Data source	
 spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl  	
