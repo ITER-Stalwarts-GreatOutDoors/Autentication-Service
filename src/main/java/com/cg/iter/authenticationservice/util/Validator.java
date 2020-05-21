@@ -10,6 +10,11 @@ import com.cg.iter.authenticationservice.exception.ValidationException;
 
 
 
+/*
+ * Name:Validator
+ * Description: It will validate phone number and password of a new user else throw an exception.
+ * Note: password must contains 7 characters alphanumeric values, upper case and special characters and number must have 10 digits numeric value.
+ */
 @Component
 public class Validator {
 	private static final Logger logger = Logger.getLogger(Validator.class);

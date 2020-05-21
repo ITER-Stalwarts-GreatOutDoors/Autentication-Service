@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
+/*
+ * Name: CustomExceptionHandler
+ * Description: Common exception handler for all the controllers.
+ */
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 
@@ -24,6 +29,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 		
 	}
 	
+	
+	/*
+	 * Name: validationException
+	 * Description: This exception will be handled if user inputs are not valid.
+	 */
 	@ExceptionHandler(ValidationException.class)
 	public final ResponseEntity<ErrorMessage> validationException(ValidationException ex){
 
@@ -35,6 +45,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 	}
 	
 	
+	
+	
+	/*
+	 * Name: validationException
+	 * Description: This exception will be handled if request comes with null values.
+	 */
 	@ExceptionHandler(NullParameterException.class)
 	public final ResponseEntity<ErrorMessage> nullParameter(NullParameterException ex){
 
@@ -45,6 +61,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 				new HttpHeaders(),HttpStatus.NOT_FOUND);
 	}
 	
+	
+	
+	/*
+	 * Name: validationException
+	 * Description: This exception will be handled if the requested user in not their in database.
+	 */
 	@ExceptionHandler(UserNotFoundException.class)
 	public final ResponseEntity<ErrorMessage> userNotFoundException(UserNotFoundException ex){
 

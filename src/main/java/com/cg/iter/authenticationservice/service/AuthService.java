@@ -9,7 +9,7 @@ import com.cg.iter.authenticationservice.entity.request.LoginRequest;
 import com.cg.iter.authenticationservice.entity.request.SignupRequest;
 import com.cg.iter.authenticationservice.entity.response.JwtResponse;
 
-public interface UserService {
+public interface AuthService {
 
 	/*
 	 * Name: authenticateUser

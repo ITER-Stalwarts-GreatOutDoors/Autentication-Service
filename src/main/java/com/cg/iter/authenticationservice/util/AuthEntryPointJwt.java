@@ -12,6 +12,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+
+/*
+ * Name : AuthEntryPointJwt
+ * Description : Its entry point of all the request, it will throw an exception if user is unauthorized with exception message.
+ */
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 

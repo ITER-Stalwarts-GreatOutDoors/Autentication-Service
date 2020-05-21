@@ -16,7 +16,7 @@ import com.cg.iter.authenticationservice.entity.request.LoginRequest;
 import com.cg.iter.authenticationservice.entity.request.SignupRequest;
 import com.cg.iter.authenticationservice.entity.response.JwtResponse;
 import com.cg.iter.authenticationservice.exception.NullParameterException;
-import com.cg.iter.authenticationservice.service.UserService;
+import com.cg.iter.authenticationservice.service.AuthService;
 import com.cg.iter.authenticationservice.util.Validator;
 
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 public class AuthController {
 	
 	@Autowired
-	UserService userService;
+	AuthService authService;
 	@Autowired
 	Validator validator;
 	
@@ -40,7 +40,7 @@ public class AuthController {
 			)
 	@PostMapping("/signin")
 	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		return userService.authenticateUser(loginRequest);
+		return authService.authenticateUser(loginRequest);
 	}
 	
 	@ApiOperation(
@@ -51,7 +51,7 @@ public class AuthController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if(signUpRequest==null || signUpRequest.getUsername()==null)throw new NullParameterException("Null input! please provide valid user details!");
-		return userService.registerUser(signUpRequest);
+		return authService.registerUser(signUpRequest);
 	}
 	
 

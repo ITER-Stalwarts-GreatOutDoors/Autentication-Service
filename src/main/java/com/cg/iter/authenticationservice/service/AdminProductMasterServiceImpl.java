@@ -27,15 +27,26 @@ public class AdminProductMasterServiceImpl implements AdminProductMasterService{
 	UserRepository userRepository;
 	
 	@Autowired
-	UserService userService;
+	AuthService authService;
 	
 	
+	
+	/*
+	 * Name: deleteProductMaster
+	 * Description: Only admin can add a new product master. Method returns a boolean.
+	 */
 	@Override
 	public boolean deleteProductMaster(int userId) {
 		userRepository.deleteById(userId);;
 		return true;
 	}
 
+	
+	
+	/*
+	 * Name: addProductMaster
+	 * Description: Only admin can delete a product master. Method return a boolean.
+	 */
 	@Override
 	public boolean addProductMaster(User user) {
 		validator.checkPassword(user.getPassword());
@@ -44,10 +55,17 @@ public class AdminProductMasterServiceImpl implements AdminProductMasterService{
 		roles.add(ERole.ROLE_USER.toString());
 		roles.add(ERole.ROLE_PRODUCT_MASTER.toString());
 		user.setRoles(roles);
-		userService.addUser(user);
+		authService.addUser(user);
 		return true;
 	}
 
+	
+	
+	
+	/*
+	 * Name: viewAllProductMasters
+	 * Description: Only admin can view the list of product masters. Method returns a list.
+	 */
 	@Override
 	public List<User> viewAllProductMasters() {
 		List<User> resultList = new ArrayList<>();

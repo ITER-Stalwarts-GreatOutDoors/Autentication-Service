@@ -9,6 +9,11 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+
+/*
+ * Name: SwaggerConfig
+ * Description: configuring swagger docket for documentation. 
+ */
 @Configuration
 public class SwaggerConfig {
 

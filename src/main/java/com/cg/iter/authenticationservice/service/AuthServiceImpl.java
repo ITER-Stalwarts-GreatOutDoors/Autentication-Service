@@ -27,7 +27,7 @@ import com.cg.iter.authenticationservice.util.JwtUtil;
 import com.cg.iter.authenticationservice.util.Validator;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class AuthServiceImpl implements AuthService{
 	
 	@Autowired
 	UserRepository userRepository;
@@ -47,6 +47,11 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	Validator validator;
 	
+	
+	/*
+	 * Name: authenticateUser
+	 * Description: it will authenticate the user with user id and password and return details and authentication token as response
+	 */
 	@Override
 	public ResponseEntity<JwtResponse> authenticateUser(@Valid LoginRequest loginRequest) {
 		User user = userRepository.findByEmail(loginRequest.getEmail()).get();
@@ -72,7 +77,12 @@ public class UserServiceImpl implements UserService{
 	
 	
 
-	
+	 
+	 
+	/*
+	 * Name: registerUser
+	 * Description: it will authenticate the user with user , create a new user and return success of failed message.
+	 */
 	@Override
 	public ResponseEntity<?> registerUser(@Valid SignupRequest signUpRequest) {
 		
@@ -143,6 +153,10 @@ public class UserServiceImpl implements UserService{
 
 
 
+	/*
+	 * Name: editUser
+	 * Description: Any actor can edit existing actor details and return a boolean value.
+	 */
 	@Override
 	public boolean editUser(User user) {
 		if(userRepository.existsByEmail(user.getEmail())) {
@@ -156,6 +170,11 @@ public class UserServiceImpl implements UserService{
 
 
 
+	
+	/*
+	 * Name: deleteUser
+	 * Description: Admin can delete existing user or product master and return a boolean value.
+	 */
 	@Override
 	public boolean deleteUser(User user) {
 		userRepository.delete(user);

@@ -34,6 +34,8 @@ public class MasterController {
 		return productMasterService.addProduct(product);
 	}
 	
+	 
+	
 	@ApiOperation(
 			value = "Delete prodcut by Id",
 			notes = "Product master can delete product in this API",
@@ -45,7 +47,7 @@ public class MasterController {
 		return productMasterService.deleteProduct(productId);
 	}
 	
-
+	 
 	
 
 }

@@ -8,6 +8,9 @@ spring.application.name=authentication_service
 ## Description 	
 ![](asserts/jwt-flow.png)	
 
+## Sequence flow
+![](asserts/JWT-Authorization.png)
+
 ## Data source	
 spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl  	
 
@@ -22,7 +25,8 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.dialect=org.hibernate.dialect.OracleDialect	
 
 
-## Current Actors	
+## Current Actors
+	
 * USER	
 
 * ADMIN	
@@ -30,6 +34,7 @@ spring.jpa.properties.dialect=org.hibernate.dialect.OracleDialect
 * RETAILER	
 
 * PRODUCT_MASTER	
+
 
 You can change actors at /src/main/java/com/cg/iter/entity/ERole according to your project.
 

@@ -66,7 +66,7 @@ public class AdminController {
 		}
 		return "fail to add Product master!!";
 	}
-	
+	 
 	
 	@ApiOperation(
 			value = "Add retailer by Id",
@@ -82,7 +82,7 @@ public class AdminController {
 		return "fail to add Retailer!!";
 	}
 	
-
+	 
 	
 	
 	@ApiOperation(
@@ -92,11 +92,11 @@ public class AdminController {
 			)
 	@GetMapping("/viewAllProductMasters")
 	@PreAuthorize("hasRole('ADMIN')")
-	List<User> viewAllProductMasters() {
+	public List<User> viewAllProductMasters() {
 		return productMasterService.viewAllProductMasters();
 		
 	}
-	
+	 
 	
 	
 	@ApiOperation(
@@ -106,14 +106,14 @@ public class AdminController {
 			)
 	@DeleteMapping("/deleteRetailer")
 	@PreAuthorize("hasRole('ADMIN')")
-	String deleteRetailer(@RequestParam int userId) {
+	public String deleteRetailer(@RequestParam int userId) {
 		if(retailerService.deleteRetailer(userId)) {
 			return "Retailer deleted successfully";
 		}
 		throw new UserNotFoundException("Invalid retailer ID!!");
 	}
 	
-	
+	 
 	
 	@ApiOperation(
 			value = "View all retailers",
@@ -122,12 +122,12 @@ public class AdminController {
 			)
 	@GetMapping("/viewAllRetailers")
 	@PreAuthorize("hasRole('ADMIN')")
-	List<User> viewAllRetailers() {
+	public List<User> viewAllRetailers() {
 		return retailerService.viewAllRetailers();
 		
 	}
 	
-	
+	 
 	
 	
 	

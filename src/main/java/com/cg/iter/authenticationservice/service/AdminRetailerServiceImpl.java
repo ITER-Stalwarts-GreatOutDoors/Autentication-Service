@@ -20,24 +20,42 @@ public class AdminRetailerServiceImpl implements AdminRetailerService{
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
-	UserService userService;
+	AuthService authService;
 	
+	
+	/*
+	 * Name: deleteRetailer
+	 * Description: Only admin can add a new retailer. Method returns a boolean.
+	 */
 	@Override
 	public boolean deleteRetailer(int userId) {
 		userRepository.deleteById(userId);
 		return true;
 	}
 
+	
+	
+	/*
+	 * Name: deleteRetailer
+	 * Description: Only admin can add a new retailer eith role as user and retailer. Method returns a boolean.
+	 */
 	@Override
 	public boolean addRetailer(User user) {
 		Set<String> roles = new HashSet<>();
 		roles.add(ERole.ROLE_USER.toString());
 		roles.add(ERole.ROLE_RETAILER.toString());
 		user.setRoles(roles);
-		userService.addUser(user);
+		authService.addUser(user);
 		return true;
 	}
 
+	
+	
+	
+	/*
+	 * Name: viewAllRetailers
+	 * Description: Only admin can view the list of retaliers and return a boolean. Method list.
+	 */
 	@Override
 	public List<User> viewAllRetailers() {
 		List<User> resultList = new ArrayList<>();

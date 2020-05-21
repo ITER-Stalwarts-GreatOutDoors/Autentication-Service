@@ -13,6 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.cg.iter.authenticationservice.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+
+/*
+ * Name - UserDetailsImpl
+ * Description - This method will help you to get the details of authenticated user and to grand authorities to new user. 
+ */
 public class UserDetailsImpl implements UserDetails{
 
 	private static final long serialVersionUID = 1L;

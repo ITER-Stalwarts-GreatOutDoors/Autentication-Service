@@ -5,15 +5,18 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.iter.authenticationservice.service.UserService;
+import com.cg.iter.authenticationservice.service.AuthService;
 
 
-
+/*
+ * Name : GenerateUserId
+ * Description : Its component that will generate the userId with random and phone number of user.
+ */
 @Component
 public class GenerateUserId {
 
 	@Autowired
-	UserService service;
+	AuthService service;
 	private static Random rand = new Random();
 	
 	

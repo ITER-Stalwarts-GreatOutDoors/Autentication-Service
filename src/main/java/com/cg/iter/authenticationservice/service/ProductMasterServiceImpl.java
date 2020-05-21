@@ -18,6 +18,13 @@ public class ProductMasterServiceImpl implements ProductMasterService{
 	private String productURL = "http://product-ms/product";
 
 
+	
+	
+	/*
+	 * Name: addProduct
+	 * Description: Only product master can add a new product and return status.
+	 * here we are calling productms to add new product.
+	 */
 	@HystrixCommand(fallbackMethod = "getFallbackAddProduct",
 			commandProperties = {
 					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
@@ -30,6 +37,15 @@ public class ProductMasterServiceImpl implements ProductMasterService{
 		return restTemplate.postForObject(productURL+"/addProduct",product, String.class);
 	}
 
+	
+	
+	
+	
+	/*
+	 * Name: deleteProduct
+	 * Description: Only product master can delete a product by product Id and return status.
+	 * here we are calling productms to delete product with productId.
+	 */
 	
 	@HystrixCommand(fallbackMethod = "getFallbackDeleteProduct",
 			commandProperties = {
