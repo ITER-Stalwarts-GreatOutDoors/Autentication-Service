@@ -11,6 +11,13 @@ spring.application.name=authentication_service
 ## Sequence flow
 ![](assets/JWT-Authorization.png)
 
+## Tools implemented 
+* [Netflix Hystrix fault tolerance](https://spring.io/guides/gs/circuit-breaker/)
+* [Swagger](https://swagger.io/)
+* [Netflix Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html)
+* [Netflix Zuul gateway](https://cloud.spring.io/spring-cloud-netflix/multi/multi__router_and_filter_zuul.html)
+* [Netflix Eureka server](https://cloud.spring.io/spring-cloud-netflix/reference/html/)
+
 ## Data source	
 spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl  	
 
