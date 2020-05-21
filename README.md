@@ -9,7 +9,7 @@ spring.application.name=authentication_service
 ![](assets/jwt-flow.png)	
 
 ## Sequence flow
-![](assets/JWT-Authorization.png)
+![](assets/JWT-Authorization.jpg)
 
 ## Tools implemented 
 * [Netflix Hystrix fault tolerance](https://spring.io/guides/gs/circuit-breaker/)
