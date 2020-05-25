@@ -23,10 +23,13 @@ public class AdminRetailerServiceImpl implements AdminRetailerService{
 	AuthService authService;
 	
 	
-	/*
-	 * Name: deleteRetailer
-	 * Description: Only admin can add a new retailer. Method returns a boolean.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : deleteRetailer <br>
+	 * - Description : Only admin can add a new retailer. Method returns a boolean. <br>
+	 * 
+	 * @param int userId
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean deleteRetailer(int userId) {
 		userRepository.deleteById(userId);
@@ -35,14 +38,16 @@ public class AdminRetailerServiceImpl implements AdminRetailerService{
 
 	
 	
-	/*
-	 * Name: deleteRetailer
-	 * Description: Only admin can add a new retailer eith role as user and retailer. Method returns a boolean.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : addRetailer <br>
+	 * - Description : Only admin can delete a retailer. Method return a boolean. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean addRetailer(User user) {
 		Set<String> roles = new HashSet<>();
-		roles.add(ERole.ROLE_USER.toString());
 		roles.add(ERole.ROLE_RETAILER.toString());
 		user.setRoles(roles);
 		authService.addUser(user);
@@ -52,10 +57,12 @@ public class AdminRetailerServiceImpl implements AdminRetailerService{
 	
 	
 	
-	/*
-	 * Name: viewAllRetailers
-	 * Description: Only admin can view the list of retaliers and return a boolean. Method list.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : viewAllRetailers <br>
+	 * - Description : Only admin can view the list of retaliers and return a boolean. Method list. <br>
+	 * 
+	 * @return List<User>
+	 ****************************************************************************************************************************************/
 	@Override
 	public List<User> viewAllRetailers() {
 		List<User> resultList = new ArrayList<>();

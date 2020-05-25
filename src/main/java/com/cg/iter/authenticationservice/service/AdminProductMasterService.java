@@ -7,25 +7,36 @@ import com.cg.iter.authenticationservice.entity.User;
 public interface AdminProductMasterService {
 
 	
-	/*
-	 * Name: deleteProductMaster
-	 * Description: Only admin can add a new product master. Method returns a boolean.
-	 */
+	
+	/****************************************************************************************************************************************
+	 * - Function Name : deleteProductMaster <br>
+	 * - Description : Only admin can add a new product master. Method returns a boolean. <br>
+	 * 
+	 * @param int userId
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	boolean deleteProductMaster(int userId);
 
 	
-	/*
-	 * Name: addProductMaster
-	 * Description: Only admin can delete a product master. Method return a boolean.
-	 */
+	
+	/****************************************************************************************************************************************
+	 * - Function Name : addProductMaster <br>
+	 * - Description : Only admin can delete a product master. Method return a boolean. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	boolean addProductMaster(User user);
 
 	
 	
-	/*
-	 * Name: viewAllProductMasters
-	 * Description: Only admin can view the list of product masters. Method returns a list.
-	 */
+
+	/****************************************************************************************************************************************
+	 * - Function Name : viewAllProductMasters <br>
+	 * - Description : Only admin can view the list of product masters. Method returns a list. <br>
+	 * 
+	 * @return List<User>
+	 ****************************************************************************************************************************************/
 	List<User> viewAllProductMasters();
 
 }

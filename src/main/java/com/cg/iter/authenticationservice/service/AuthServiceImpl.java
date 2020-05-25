@@ -48,10 +48,13 @@ public class AuthServiceImpl implements AuthService{
 	Validator validator;
 	
 	
-	/*
-	 * Name: authenticateUser
-	 * Description: it will authenticate the user with user id and password and return details and authentication token as response
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : authenticateUser <br>
+	 * - Description : it will authenticate the user with user id and password and return details and authentication token as response <br>
+	 * 
+	 * @param LoginRequest loginRequest
+	 * @return ResponseEntity<JwtResponse>
+	 ****************************************************************************************************************************************/
 	@Override
 	public ResponseEntity<JwtResponse> authenticateUser(@Valid LoginRequest loginRequest) {
 		User user = userRepository.findByEmail(loginRequest.getEmail()).get();
@@ -78,11 +81,16 @@ public class AuthServiceImpl implements AuthService{
 	
 
 	 
+	
+	
 	 
-	/*
-	 * Name: registerUser
-	 * Description: it will authenticate the user with user , create a new user and return success of failed message.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : registerUser <br>
+	 * - Description : it will authenticate the user with user , create a new user and return success of failed message. <br>
+	 * 
+	 * @param SignupRequest signUpRequest
+	 * @return ResponseEntity<?> registerUser
+	 ****************************************************************************************************************************************/
 	@Override
 	public ResponseEntity<?> registerUser(@Valid SignupRequest signUpRequest) {
 		
@@ -153,10 +161,13 @@ public class AuthServiceImpl implements AuthService{
 
 
 
-	/*
-	 * Name: editUser
-	 * Description: Any actor can edit existing actor details and return a boolean value.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : editUser <br>
+	 * - Description : Any actor can edit existing actor details and return a boolean value. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean editUser(User user) {
 		if(userRepository.existsByEmail(user.getEmail())) {
@@ -171,10 +182,13 @@ public class AuthServiceImpl implements AuthService{
 
 
 	
-	/*
-	 * Name: deleteUser
-	 * Description: Admin can delete existing user or product master and return a boolean value.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : deleteUser <br>
+	 * - Description : Admin can delete existing user or product master and return a boolean value. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean deleteUser(User user) {
 		userRepository.delete(user);
@@ -185,6 +199,12 @@ public class AuthServiceImpl implements AuthService{
 
 
 
+	/****************************************************************************************************************************************
+	 * - Function Name : getDbCount <br>
+	 * - Description : It will return the number of rows in userDB to generate key. <br>
+	 * 
+	 * @return long
+	 ****************************************************************************************************************************************/
 	@Override
 	public long getDbCount() {
 		return userRepository.count();
@@ -194,6 +214,13 @@ public class AuthServiceImpl implements AuthService{
 
 
 
+	/****************************************************************************************************************************************
+	 * - Function Name : addUser <br>
+	 * - Description : Admin can add user or product master and return a boolean value. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean addUser(User user) {
 		user.setId(generate.generateUserId(user.getPhoneno()));

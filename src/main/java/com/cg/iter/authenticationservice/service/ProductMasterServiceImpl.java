@@ -20,11 +20,14 @@ public class ProductMasterServiceImpl implements ProductMasterService{
 
 	
 	
-	/*
-	 * Name: addProduct
-	 * Description: Only product master can add a new product and return status.
-	 * here we are calling productms to add new product.
-	 */
+	
+	/****************************************************************************************************************************************
+	 * - Function Name : addProduct <br>
+	 * - Description : Only product master can add a new product and return status. Here we are calling productms to add new product. <br>
+	 * 
+	 * @param ProductDTO product
+	 * @return String
+	 ****************************************************************************************************************************************/
 	@HystrixCommand(fallbackMethod = "getFallbackAddProduct",
 			commandProperties = {
 					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
@@ -41,11 +44,15 @@ public class ProductMasterServiceImpl implements ProductMasterService{
 	
 	
 	
-	/*
-	 * Name: deleteProduct
-	 * Description: Only product master can delete a product by product Id and return status.
-	 * here we are calling productms to delete product with productId.
-	 */
+	
+	/****************************************************************************************************************************************
+	 * - Function Name : deleteProduct <br>
+	 * - Description : Only product master can delete a product by product Id and return status ,
+	 * 					here we are calling productms to delete product with productId. <br>
+	 * 
+	 * @param String productId
+	 * @return String
+	 ****************************************************************************************************************************************/
 	
 	@HystrixCommand(fallbackMethod = "getFallbackDeleteProduct",
 			commandProperties = {
@@ -63,9 +70,16 @@ public class ProductMasterServiceImpl implements ProductMasterService{
 		return restTemplate.postForObject(productURL+"/deleteProduct",parametersMap,String.class);
 	}
 	
+	
+	
+	
+	//Fallback method for add product
 	String getFallbackAddProduct(ProductDTO product) {
 		return "Add product service is not responding...";
 	}
+	
+	
+	//Fallback method for delete product
 	String getFallbackDeleteProduct(ProductDTO product) {
 		return "Delete product service is not responding...";
 	}

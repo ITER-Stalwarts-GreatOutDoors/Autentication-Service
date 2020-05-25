@@ -31,10 +31,13 @@ public class AdminProductMasterServiceImpl implements AdminProductMasterService{
 	
 	
 	
-	/*
-	 * Name: deleteProductMaster
-	 * Description: Only admin can add a new product master. Method returns a boolean.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : deleteProductMaster <br>
+	 * - Description : Only admin can add a new product master. Method returns a boolean. <br>
+	 * 
+	 * @param int userId
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean deleteProductMaster(int userId) {
 		userRepository.deleteById(userId);;
@@ -43,10 +46,13 @@ public class AdminProductMasterServiceImpl implements AdminProductMasterService{
 
 	
 	
-	/*
-	 * Name: addProductMaster
-	 * Description: Only admin can delete a product master. Method return a boolean.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : addProductMaster <br>
+	 * - Description : Only admin can delete a product master. Method return a boolean. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	@Override
 	public boolean addProductMaster(User user) {
 		validator.checkPassword(user.getPassword());
@@ -62,10 +68,12 @@ public class AdminProductMasterServiceImpl implements AdminProductMasterService{
 	
 	
 	
-	/*
-	 * Name: viewAllProductMasters
-	 * Description: Only admin can view the list of product masters. Method returns a list.
-	 */
+	/****************************************************************************************************************************************
+	 * - Function Name : viewAllProductMasters <br>
+	 * - Description : Only admin can view the list of product masters. Method returns a list. <br>
+	 * 
+	 * @return List<User>
+	 ****************************************************************************************************************************************/
 	@Override
 	public List<User> viewAllProductMasters() {
 		List<User> resultList = new ArrayList<>();

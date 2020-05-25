@@ -6,26 +6,37 @@ import com.cg.iter.authenticationservice.entity.User;
 
 public interface AdminRetailerService {
 
-	/*
-	 * Name: deleteRetailer
-	 * Description: Only admin can add a new retailer. Method returns a boolean.
-	 */
-	boolean deleteRetailer(int uderId);
+	
+	/****************************************************************************************************************************************
+	 * - Function Name : deleteRetailer <br>
+	 * - Description : Only admin can add a new retailer. Method returns a boolean. <br>
+	 * 
+	 * @param int userId
+	 * @return boolean
+	 ****************************************************************************************************************************************/
+	boolean deleteRetailer(int userId);
 
 	
 	
-	/*
-	 * Name: addRetailer
-	 * Description: Only admin can delete a retailer. Method return a boolean.
-	 */
+	
+	/****************************************************************************************************************************************
+	 * - Function Name : addRetailer <br>
+	 * - Description : Only admin can delete a retailer. Method return a boolean. <br>
+	 * 
+	 * @param User user
+	 * @return boolean
+	 ****************************************************************************************************************************************/
 	boolean addRetailer(User user);
 
 	
 	
-	/*
-	 * Name: viewAllRetailers
-	 * Description: Only admin can view the list of retaliers and return a boolean. Method list.
-	 */
+
+	/****************************************************************************************************************************************
+	 * - Function Name : viewAllRetailers <br>
+	 * - Description : Only admin can view the list of retaliers and return a boolean. Method list. <br>
+	 * 
+	 * @return List<User>
+	 ****************************************************************************************************************************************/
 	List<User> viewAllRetailers();
 
 

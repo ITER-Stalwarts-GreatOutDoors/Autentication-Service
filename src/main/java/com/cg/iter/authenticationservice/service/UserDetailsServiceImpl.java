@@ -12,13 +12,14 @@ import com.cg.iter.authenticationservice.repository.UserRepository;
 
 
 
-/*
- * Name: UserDetailsServiceImpl
- * Description: Get full custom User object using UserRepository, then build a UserDetails object using static build() method,
- * 				by which we can extract authenticated user details.
- * Note: If the authentication process is successful,
- * 		 we can get User’s information such as username, password, authorities from an Authentication object.
- */
+/****************************************************************************************************************************************
+ * - Function Name : UserDetailsServiceImpl <br>
+ * - Description : Get full custom User object using UserRepository, then build a UserDetails object using static build() method,
+ * 				   by which we can extract authenticated user details. <br>
+ * 
+ * @apiNote If the authentication process is successful, we can get User’s information such as username,
+ * 		    password, authorities from an Authentication object.
+ ****************************************************************************************************************************************/
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
