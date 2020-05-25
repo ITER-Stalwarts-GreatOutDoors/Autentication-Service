@@ -25,6 +25,7 @@ spring.datasource.username=sprint2db
 
 spring.datasource.password=student123	
 
+
 spring.jpa.show-sql=true	
 
 spring.jpa.hibernate.ddl-auto=update	
